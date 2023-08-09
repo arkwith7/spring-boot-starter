@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/default}">
+
+<!-- index.html 고유 CSS 추가 -->
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/assets/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/font-awesome.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+    <!-- GOOGLE FONT -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</th:block>
+<!-- Content -->
+<div layout:fragment="content">
+    <div class="content-wrapper">
+        <div class="container">
+            <div class="row pad-botm">
+                <div class="col-md-12">
+                    <h4 class="header-line">Blank Page</h4>
+
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-info">
+                        This is blank page for your customization. So use this page and start your project now.
+                        <br />
+                        Happy downloading
+                        <br />
+                        Keep Looking <a target="_blank" href="http://www.binarytheme.com/">binarytheme.com</a> for cool
+                        stuff.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- index.html 고유 스크립트 추가 -->
+<th:block layout:fragment="script">
+    <!--    <script th:src="@{/js/page/home.js}"></script>-->
+    <!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
+    <!-- CORE JQUERY  -->
+    <script th:src="@{/assets/js/jquery-1.10.2.js}"></script>
+    <!-- BOOTSTRAP SCRIPTS  -->
+    <script th:src="@{/assets/js/bootstrap.js}"></script>
+    <!-- CUSTOM SCRIPTS  -->
+    <script th:src="@{/assets/js/custom.js}"></script>
+</th:block>
+
+</html>

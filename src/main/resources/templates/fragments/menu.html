@@ -1,0 +1,37 @@
+<!--resources/templates/fragments/menu.html-->
+
+<html xmlns:th="http://www.thymeleaf.org">
+<!--headerFragment 선언-->
+<!-- div th:fragment="menuFragment" -->
+    <section th:fragment="menuFragment" class="menu-section">
+        <div class="container">
+            <div class="row ">
+                <div class="col-md-12">
+                    <div class="navbar-collapse collapse ">
+                        <ul id="menu-top" class="nav navbar-nav navbar-right">
+                            <li><a th:href="@{/sample/index}" class="menu-top-active">DASHBOARD</a></li>
+                           
+                            <li><a th:href="@{/sample/form}">FORMS</a></li>
+                            <li>
+                                <a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown">UI ELEMENTS <i class="fa fa-angle-down"></i></a>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" th:href="@{/sample/ui}">UI ELEMENTS</a></li>
+                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">EXAMPLE LINK</a></li>
+                                </ul>
+                            </li>
+                            <li><a th:href="@{/sample/tab}">TABS & PANELS</a></li>
+                             <li><a th:href="@{/sample/table}">TABLES</a></li>
+                             <li><a th:href="@{/sample/login}">Login PAGE</a></li>
+                             <li><a th:href="@{/sample/signup}">SignUp PAGE</a></li>
+                             <li><a th:href="@{/sample/blank}">BLANK PAGE</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+     <!-- MENU SECTION END-->
+<!-- /div -->
+</html>
