@@ -5,13 +5,16 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.arkwith.starter.answer.AnswerForm;
+
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestParam;
+import jakarta.validation.Valid;
 
 
 @RequestMapping("/question")
@@ -29,22 +32,27 @@ public class QuestionController {
     }
 
     @GetMapping("/detail/{id}")
-    public String detail(@PathVariable int id, Model model) {
+    public String detail(@PathVariable int id, Model model, AnswerForm answerForm) {
         Question question = this.questionService.findById(id);
         model.addAttribute("question", question);
         return "pages/qna/question_detail";
     }
 
     @GetMapping("/create")
-    public String create() {
+    public String create(QuestionForm questionForm) {
         return "pages/qna/question_form";
     }
 
     @PostMapping("/save")
-    public String save(@RequestParam("subject") String subject, @RequestParam("content") String content) {
+    public String save(@Valid QuestionForm questionForm, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return "pages/qna/question_form";
+        }
+
         Question question = new Question();
-        question.setSubject(subject);
-        question.setContent(content);
+        question.setSubject(questionForm.getSubject());
+        question.setContent(questionForm.getContent());
         question.setCreateDate(LocalDateTime.now());
         this.questionService.save(question);
         return "redirect:/question/list";
