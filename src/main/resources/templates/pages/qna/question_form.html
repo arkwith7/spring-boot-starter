@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/default}">
+
+<head>
+    <title>질문내역상세</title>
+
+    <!-- index.html 고유 CSS 추가 -->
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" th:href="@{/assets/css/bootstrap.css}">
+        <link rel="stylesheet" th:href="@{/assets/css/font-awesome.css}">
+        <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+        <!-- GOOGLE FONT -->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    </th:block>
+
+</head>
+<!-- Content -->
+<div layout:fragment="content">
+    <div class="content-wrapper">
+        <div class="container">
+            <div class="row pad-botm">
+                <div class="col-md-12">
+                    <h4 class="header-line">신규질문등록</h4>
+
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <form role="form" th:action="@{/question/save}" method="post" >
+                        <div class="form-group">
+                            <label>질문 제목</label>
+                            <input name="subject" class="form-control" type="text">
+                    <p class="help-block">질문 내용의 제목을 입력하세요.</p>
+                        </div>
+                        <label>질문 내용</label>
+                        <div class="form-group">
+                            <textarea name="content" class="form-control" rows="5"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-info">질문등록 </button>
+                    </form>            </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>

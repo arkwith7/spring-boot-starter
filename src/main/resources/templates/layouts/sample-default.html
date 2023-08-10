@@ -12,21 +12,13 @@
 </head>
 <body>
     <!-- header fragment 사용 -->
-    <th:block th:replace="fragments/header :: headerFragment"></th:block>
+    <th:block th:replace="fragments/sample-header :: headerFragment"></th:block>
     <!-- menu fragment 사용 -->
-    <th:block th:replace="fragments/menu :: menuFragment"></th:block>
+    <th:block th:replace="fragments/sample-menu :: menuFragment"></th:block>
     <!-- content fragment 사용 -->
     <th:block layout:fragment="content"></th:block>
     <!-- footer fragment 사용 -->
     <th:block th:replace="fragments/footer :: footerFragment"></th:block>
-    <!--    <script th:src="@{/js/page/home.js}"></script>-->
-    <!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
-    <!-- CORE JQUERY  -->
-    <script th:src="@{/assets/js/jquery-1.10.2.js}"></script>
-    <!-- BOOTSTRAP SCRIPTS  -->
-    <script th:src="@{/assets/js/bootstrap.js}"></script>
-    <!-- CUSTOM SCRIPTS  -->
-    <script th:src="@{/assets/js/custom.js}"></script>
     <!-- content script -->
     <th:block layout:fragment="script"></th:block>
 </body>
