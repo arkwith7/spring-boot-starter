@@ -129,4 +129,16 @@ class StarterApplicationTests {
 		assertEquals("네 자동으로 생성됩니다.", answerList.get(0).getContent());
 	}
 
+	@Test
+	void testCreateDummyDataForQuestion() {
+		for (int i = 0; i < 100; i++) {
+			Question q = new Question();
+			q.setSubject(String.format("테스트 데이터 입니다 : [%03d]", i));
+			q.setContent("내용무 : " + i);
+			q.setCreateDate(LocalDateTime.now());
+
+			this.questionRepository.save(q);
+		}
+	}
+
 }

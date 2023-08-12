@@ -1,8 +1,15 @@
 package com.arkwith.starter.question;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import com.arkwith.starter.user.Member;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,21 +29,21 @@ public class QuestionService {
         });
     }
 
-    public void deleteById(int id) {
-        questionRepository.deleteById(id);
+    public void delete(Question question) {
+        questionRepository.delete(question);
     }
 
-    public void update(int id, Question requestQuestion) {
-        Question question = questionRepository.findById(id).orElseThrow(() -> {
-            return new IllegalArgumentException("질문 수정을 위한 질문을 찾을 수 없습니다.");
-        });
-        question.setSubject(requestQuestion.getSubject());
-        question.setContent(requestQuestion.getContent());
-        // 해당 함수로 종료시(Service가 종료될 때) 트랜잭션이 종료됩니다. 이때 더티체킹 - 자동 업데이트가 됩니다. db flush
+    public void likes(Question question, Member member) {
+        question.getLikes().add(member);
+        questionRepository.save(question);
     }
 
-    public List<Question> findAll() {
-        return questionRepository.findAll();
+    public Page<Question> getList(int page) {
+        // Pageable pageable = PageRequest.of(page, 10, Sort.by("createDate").descending());
+        List<Sort.Order> sorts = new ArrayList<>();
+        sorts.add(Sort.Order.desc("createDate"));
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts));
+        return questionRepository.findAll(pageable);
     }
 
     

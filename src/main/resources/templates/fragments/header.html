@@ -19,9 +19,10 @@
             </div>
 
             <div class="right-div">
-                <a th:href="@{/login}" class="btn btn-primary pull-left">로그인</a>
+                <a sec:authorize="isAnonymous()" th:href="@{/user/login}" class="btn btn-primary pull-left">로그인</a>
+                <a sec:authorize="isAuthenticated()" th:href="@{/user/logout}" class="btn btn-primary pull-left">로그아웃</a>
                 <span> &nbsp;&nbsp; </span>
-                <a th:href="@{/signup}" class="btn btn-primary pull-right">회원가입</a>
+                <a th:href="@{/user/signup}" class="btn btn-primary pull-right">회원가입</a>
             </div>
         </div>
     </div>
