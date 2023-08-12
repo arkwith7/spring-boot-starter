@@ -70,9 +70,9 @@ public class QuestionService {
         List<Sort.Order> sorts = new ArrayList<>();
         sorts.add(Sort.Order.desc("createDate"));
         Pageable pageable = PageRequest.of(page, numPerPage, Sort.by(sorts));
-        Specification<Question> spec = search(kw);
-        return questionRepository.findAll(spec, pageable);
-        // return this.questionRepository.findAllByKeyword(kw, pageable);
+        // Specification<Question> spec = search(kw);
+        // return questionRepository.findAll(spec, pageable);
+        return this.questionRepository.findAllByKeyword(kw, pageable);
     }
 
     
