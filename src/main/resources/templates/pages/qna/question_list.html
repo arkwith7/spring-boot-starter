@@ -77,12 +77,12 @@
                                     <div class="col-sm-6  text-left"  style="margin-top: 0px;">
                                         <div>
                                             <label>
-                                                <select name="dataTables-example_length"
+                                                <select id="listnum-page" name="listnum-page"  onchange="chageListNumSelect()"
                                                     aria-controls="dataTables-example" class="form-control input-sm">
-                                                    <option value="10">10</option>
-                                                    <option value="25">25</option>
-                                                    <option value="50">50</option>
-                                                    <option value="100">100</option>
+                                                    <option value="10" th:selected="10 == ${paging.size}">10</option>
+                                                    <option value="25" th:selected="25 == ${paging.size}">25</option>
+                                                    <option value="50" th:selected="50 == ${paging.size}">50</option>
+                                                    <option value="100" th:selected="100 == ${paging.size}">100</option>
                                                 </select> 페이지당 목록수</label>
                                         </div>
                                     </div>
@@ -133,10 +133,26 @@
     </div>
 </div>
 <script layout:fragment="script" type='text/javascript'>
+    function chageListNumSelect() {
+        const listNumPerPage = document.getElementById("listnum-page");
+        // listNumPerPage.options[listNumPerPage.selectedIndex];
+        // document.getElementById('searchForm').submit();
+        // alert("Slected Value : " + listNumPerPage.options[listNumPerPage.selectedIndex].value);
+        // $("#listnum-page option").index("#listnum-page option:selected");
+        document.getElementById('kw').value = document.getElementById('search_kw').value;
+        document.getElementById('page').value = 0;  // 검색버튼을 클릭할 경우 0페이지부터 조회한다.
+        document.getElementById('numPerPage').value = listNumPerPage.options[listNumPerPage.selectedIndex].value;
+        document.getElementById('searchForm').submit();
+    }
+    const listNumPerPage = document.getElementById("listnum-page");
+    // console.log("Slected Value : " + listNumPerPage.options[listNumPerPage.selectedIndex].value);
+    // alert("Slected Value : " + listNumPerPage.options[listNumPerPage.selectedIndex].value);
+    // alert("Slected Value : " + listNumPerPage.options[listNumPerPage.selectedIndex].value);
     const page_elements = document.getElementsByClassName("page-link");
     Array.from(page_elements).forEach(function(element) {
         element.addEventListener('click', function() {
             document.getElementById('page').value = this.dataset.page;
+            document.getElementById('numPerPage').value = listNumPerPage.options[listNumPerPage.selectedIndex].value;
             document.getElementById('searchForm').submit();
         });
     });
