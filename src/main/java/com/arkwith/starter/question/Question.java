@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.core.annotation.Order;
+
 import com.arkwith.starter.answer.Answer;
 import com.arkwith.starter.user.Member;
 
@@ -16,6 +18,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OrderBy;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -39,6 +42,7 @@ public class Question {
     private LocalDateTime modifyDate;
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
+    @OrderBy("id DESC")
     private List<Answer> answerList;
 
     @ManyToOne
