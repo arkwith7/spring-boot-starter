@@ -9,21 +9,21 @@
                 <div class="col-md-12">
                     <div class="navbar-collapse collapse ">
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
-                            <li><a th:href="@{/sample/index}" class="menu-top-active">DASHBOARD</a></li>
+                            <li class="nav-item"><a class="nav-link" th:href="@{/sample/index}" >DASHBOARD</a></li>
                            
-                            <li><a th:href="@{/sample/form}">FORMS</a></li>
-                            <li>
-                                <a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown">UI ELEMENTS <i class="fa fa-angle-down"></i></a>
+                            <li class="nav-item"><a class="nav-link" th:href="@{/sample/form}">FORMS</a></li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown">UI ELEMENTS <i class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
                                     <li role="presentation"><a role="menuitem" tabindex="-1" th:href="@{/sample/ui}">UI ELEMENTS</a></li>
                                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">EXAMPLE LINK</a></li>
                                 </ul>
                             </li>
-                            <li><a th:href="@{/sample/tab}">TABS & PANELS</a></li>
-                             <li><a th:href="@{/sample/table}">TABLES</a></li>
-                             <li><a th:href="@{/sample/login}">Login</a></li>
-                             <li><a th:href="@{/sample/signup}">SignUp</a></li>
-                             <li><a th:href="@{/sample/blank}">BLANK PAGE</a></li>
+                            <li class="nav-item"><a class="nav-link" th:href="@{/sample/tab}">TABS & PANELS</a></li>
+                             <li class="nav-item"><a class="nav-link" th:href="@{/sample/table}">TABLES</a></li>
+                             <li class="nav-item"><a class="nav-link" th:href="@{/sample/login}">Login</a></li>
+                             <li class="nav-item"><a class="nav-link" th:href="@{/sample/signup}">SignUp</a></li>
+                             <li class="nav-item"><a class="nav-link" th:href="@{/sample/blank}">BLANK PAGE</a></li>
 
                         </ul>
                     </div>
@@ -31,7 +31,20 @@
 
             </div>
         </div>
-    </section>
+        <script>
+            const nav_link_elements = document.getElementsByClassName("nav-item");
+            Array.from(nav_link_elements).forEach(function(element) {
+                element.addEventListener('click', function() {
+                    Array.from(nav_item_elements).forEach(function(element) {
+                        element.classList.remove("menu-top-active");
+                    });
+                    element.classList.add("menu-top-active");
+                    // e.preventDefault();
+                    // alert("click");
+                });
+            });
+            </script>
+        </section>
      <!-- MENU SECTION END-->
 <!-- /div -->
 </html>

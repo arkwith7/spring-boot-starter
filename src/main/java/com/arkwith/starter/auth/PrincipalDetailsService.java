@@ -1,25 +1,28 @@
-package com.arkwith.starter.user;
-
+package com.arkwith.starter.auth;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.arkwith.starter.user.Member;
+import com.arkwith.starter.user.Role;
+import com.arkwith.starter.user.UserRepository;
+
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
-public class UserSecurityService implements UserDetailsService {
+public class PrincipalDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
+    // 일반 로그인시 사용하는 사용자 정보 적재 함수
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<Member> _member = userRepository.findByUsername(username);
@@ -36,9 +39,8 @@ public class UserSecurityService implements UserDetailsService {
             authorities.add(new SimpleGrantedAuthority(Role.USER.getKey()));
         }
 
-        return new User(member.getUsername(), member.getPassword(), authorities);
+        return new PrincipalDetails(member);
         
     }
-
     
 }

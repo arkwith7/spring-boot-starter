@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/default}">
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/admin-layout}">
 
 <head>
     <title>질문목록</title>
@@ -28,6 +28,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
+
                     <!-- Advanced Tables -->
                     <div class="table-responsive">
                         <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
@@ -64,7 +65,7 @@
                                                 th:text="${#lists.size(question.answerList)}">
                                             </span>
                                         </td>
-                                        <td><span th:if="${question.author != null}" th:text="${question.author.username}"></span></td>
+                                        <td><span th:if="${question.author != null}" th:text="${question.author.nickname}"></span></td>
                                         <td class=" "
                                             th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}">
                                             Mozilla 1.0</td>

@@ -27,10 +27,21 @@ public class Member {
     @Column(unique = true)
     private String username;
 
+    @Column(nullable = true)
+    private String nickname;
+
+    private String name;
+
+    private String picture;
+
     private String password;
 
     @Column(unique = true)
     private String email;
+
+    // OAuth2 provider;
+    private String provider;
+    private String providerId;
 
     private LocalDateTime createDate;
 
@@ -40,20 +51,34 @@ public class Member {
     @Column(nullable = true)
     private Role role;
 
+
     @Builder
-    public Member(String username, String email, Role role){
+    public Member(String username,String nickname, String name, String picture, String email, String provider, String providerId, Role role){
         this.username = username;
+        this.nickname = nickname;
+        this.name = name;
+        this.picture = picture;
         this.email = email;
+        this.provider = provider;
+        this.providerId = providerId;
         this.role = role;
+        this.createDate = LocalDateTime.now();
     }
 
-    public Member update(String username) {
+    public Member update(String username,String nickname, String name, String picture, String email, String provider, String providerId, Role role){
         this.username = username;
-
+        this.nickname = nickname;
+        this.name = name;
+        this.picture = picture;
+        this.email = email;
+        this.provider = provider;
+        this.providerId = providerId;
+        this.role = role;
+        this.modifyDate = LocalDateTime.now();
         return this;
     }
     public String getRoleKey(){
-        return this.role.getKey();
+        return "ROLE_USER";
     }
-        
+
 }

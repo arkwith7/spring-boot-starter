@@ -13,7 +13,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import com.arkwith.starter.auth.CustomOAuth2UserService;
+import com.arkwith.starter.auth.PrincipalOauth2UserService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 @EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
-    private final CustomOAuth2UserService customOAuth2UserService;
+    private final PrincipalOauth2UserService principalOauth2UserService;
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -41,7 +41,7 @@ public class SecurityConfig {
                 // 로그인 페이지 설정
             .formLogin((formLogin) -> formLogin
                 .loginPage("/user/login")
-                .defaultSuccessUrl("/"))
+                .defaultSuccessUrl("/question/list"))
                 // 로그아웃 설정
             .logout((logout) -> logout
                 .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
@@ -49,14 +49,15 @@ public class SecurityConfig {
                 .invalidateHttpSession(true))        
             .oauth2Login((oauth2Login) -> oauth2Login
                 .loginPage("/user/login")
-                .defaultSuccessUrl("/")
+                .defaultSuccessUrl("/question/list")
                 .userInfoEndpoint()         //OAuth2 로그인 성공 이후 사용자 정보를 가져올 때의 설정들을 담당한다.
-                .userService(customOAuth2UserService)) //소셜 로그인 성공 시 후속 조치를 진행할 UserService 인터페이스의 구현체를 등록한다.
+                .userService(principalOauth2UserService)) //소셜 로그인 성공 시 후속 조치를 진행할 UserService 인터페이스의 구현체를 등록한다.
         
         ;
 
         return http.build();
     }
+
     // 회원가입시 비밀번호 암호화를 위한 PasswordEncoder 빈 등록
     @Bean
     PasswordEncoder passwordEncoder() {
