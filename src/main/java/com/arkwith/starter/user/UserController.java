@@ -65,6 +65,7 @@ public class UserController {
         return "redirect:login";
     }
 
+    @PreAuthorize("isAuthenticated()") // 인증된 사용자만 접근 가능
     @GetMapping("/list")
     public String list(Model model, @RequestParam(value="page", defaultValue = "0") int page,
             @RequestParam(value="numPerPage", defaultValue = "10") int numPerPage,
@@ -76,12 +77,14 @@ public class UserController {
         return "pages/user/user_list";
     }
 
+    @PreAuthorize("isAuthenticated()") // 인증된 사용자만 접근 가능
     @GetMapping("/create")
     public String create(MemberCreateForm memberCreateForm) {
         memberCreateForm.setMode("NEW");
         return "pages/user/user_form";
     }
 
+    @PreAuthorize("isAuthenticated()") // 인증된 사용자만 접근 가능
     @PostMapping("/create")
     public String createUser(@Valid MemberCreateForm memberCreateForm, BindingResult bindingResult, Principal principal) {
 
@@ -113,6 +116,7 @@ public class UserController {
         return "redirect:/user/list";
     }
 
+    @PreAuthorize("isAuthenticated()") // 인증된 사용자만 접근 가능
     @GetMapping("/update/{id}")
     public String updateForm(MemberCreateForm memberCreateForm, @PathVariable("id") Long id) {
         Member member = this.memberService.findById(id);
@@ -131,6 +135,7 @@ public class UserController {
         return "pages/user/user_form";
     }
 
+    @PreAuthorize("isAuthenticated()") // 인증된 사용자만 접근 가능
     @PostMapping("/update/{id}")
     public String update(@PathVariable("id") Long id, @Valid MemberCreateForm memberCreateForm, BindingResult bindingResult, Principal principal) {
         Member member = this.memberService.findById(id);
@@ -151,6 +156,7 @@ public class UserController {
         return "redirect:/user/update/" + id;
     }
 
+    @PreAuthorize("isAuthenticated()") // 인증된 사용자만 접근 가능
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") Long id, Principal principal) {
         Member member = this.memberService.findById(id);
@@ -158,6 +164,7 @@ public class UserController {
         return "redirect:/user/list";
     }
 
+    @PreAuthorize("isAuthenticated()") // 인증된 사용자만 접근 가능
     @GetMapping("/profile/{username}")
     public String updateProfileForm(MemberCreateForm memberCreateForm, @PathVariable("username") String username) {
         
@@ -174,6 +181,7 @@ public class UserController {
 
     }
 
+    @PreAuthorize("isAuthenticated()") // 인증된 사용자만 접근 가능
     @PostMapping("/profile/{username}")
     public String updateProfile(MemberCreateForm memberCreateForm, @PathVariable("username") String username, BindingResult bindingResult, Principal principal) {
         
@@ -194,6 +202,7 @@ public class UserController {
 
     }
 
+    @PreAuthorize("isAuthenticated()") // 인증된 사용자만 접근 가능
     @GetMapping("/password/{username}")
     public String changePasswordForm(MemberCreateForm memberCreateForm, @PathVariable("username") String username) {
         
@@ -210,6 +219,7 @@ public class UserController {
 
     }
 
+    @PreAuthorize("isAuthenticated()") // 인증된 사용자만 접근 가능
     @PostMapping("/password/{username}")
     public String changePassword(MemberCreateForm memberCreateForm, @PathVariable("username") String username, BindingResult bindingResult, Principal principal) {
         

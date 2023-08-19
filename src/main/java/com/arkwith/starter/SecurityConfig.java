@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -55,6 +56,9 @@ public class SecurityConfig {
                   userInfoEndpoint
                 //소셜 로그인 성공 시 후속 조치를 진행할 UserService 인터페이스의 구현체를 등록한다.
                   .userService(principalOauth2UserService))
+            )
+            .exceptionHandling((exceptionHandling) -> exceptionHandling
+            .authenticationEntryPoint(loginUrlAuthenticationEntryPoint())
             ) 
         ;
 
@@ -71,5 +75,9 @@ public class SecurityConfig {
     AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
-
+    // 로그인 페이지로 이동하는 Entry Point
+    @Bean
+    public LoginUrlAuthenticationEntryPoint loginUrlAuthenticationEntryPoint() {
+        return new LoginUrlAuthenticationEntryPoint("/user/login"); 
+    }
 }

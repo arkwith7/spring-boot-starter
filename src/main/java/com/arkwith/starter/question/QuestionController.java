@@ -31,6 +31,7 @@ public class QuestionController {
     private final QuestionService questionService;
     private final UserService userService;
 
+    @PreAuthorize("isAuthenticated()") // 인증된 사용자만 접근 가능
     @GetMapping("/list")
     public String list(Model model, @RequestParam(value="page", defaultValue = "0") int page,
             @RequestParam(value="numPerPage", defaultValue = "10") int numPerPage,
