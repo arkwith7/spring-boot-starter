@@ -50,9 +50,12 @@ public class SecurityConfig {
             .oauth2Login((oauth2Login) -> oauth2Login
                 .loginPage("/user/login")
                 .defaultSuccessUrl("/question/list")
-                .userInfoEndpoint()         //OAuth2 로그인 성공 이후 사용자 정보를 가져올 때의 설정들을 담당한다.
-                .userService(principalOauth2UserService)) //소셜 로그인 성공 시 후속 조치를 진행할 UserService 인터페이스의 구현체를 등록한다.
-        
+                //OAuth2 로그인 성공 이후 사용자 정보를 가져올 때의 설정들을 담당한다.
+                .userInfoEndpoint(userInfoEndpoint ->
+                  userInfoEndpoint
+                //소셜 로그인 성공 시 후속 조치를 진행할 UserService 인터페이스의 구현체를 등록한다.
+                  .userService(principalOauth2UserService))
+            ) 
         ;
 
         return http.build();

@@ -11,6 +11,9 @@
 >3. HTML Template : Thymeleaf
 - 개발도구(IDE) : VScode v1.81.1
 
+- **참조**
+>>1. [Bootstrap 3 Tutorial](https://www.w3schools.com/bootstrap/default.asp)
+
 ### 소셜 로그인, 자체로그인 통합
 - 회원관리(도메인객체: src/main/java/com/arkwith/starter/user/Member.java)
 - 스프링시큐리티에서 상속받아 구현 사용자 객체(src/main/java/com/arkwith/starter/auth/PrincipalDetails.java)
@@ -30,8 +33,8 @@
 >5. 회원관리 도메인 레파지터리 서비스(제작: src/main/java/com/arkwith/starter/auth/PrincipalOauth2UserService.java)
 >6. 로그인 성공시 Q & A 목록 표시
 
-- 참조 :
-1. [최신 Spring Security 사용법 - SecurityFilterChain](https://samori.tistory.com/64)
-2. [[Spring Security] 기본 구조 및 구현 방법 간단 요약](https://to-moneyking.tistory.com/78)
-3. [Spring Security의 구조(Architecture) 및 처리 과정 알아보기](https://dev-coco.tistory.com/174)
-3. [Spring Boot 게시판 OAuth 2.0 구글 로그인 구현](https://dev-coco.tistory.com/128)
+- **참조** :
+>>1. [최신 Spring Security 사용법 - SecurityFilterChain](https://samori.tistory.com/64)
+>>2. [[Spring Security] 기본 구조 및 구현 방법 간단 요약](https://to-moneyking.tistory.com/78)
+>>3. [Spring Security의 구조(Architecture) 및 처리 과정 알아보기](https://dev-coco.tistory.com/174)
+>>3. [Spring Boot 게시판 OAuth 2.0 구글 로그인 구현](https://dev-coco.tistory.com/128)

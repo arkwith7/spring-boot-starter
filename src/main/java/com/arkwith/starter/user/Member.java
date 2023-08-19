@@ -36,7 +36,7 @@ public class Member {
 
     private String password;
 
-    @Column(unique = true)
+    @Column(nullable = false)
     private String email;
 
     // OAuth2 provider;
@@ -78,7 +78,7 @@ public class Member {
         return this;
     }
     public String getRoleKey(){
-        return "ROLE_USER";
+        return this.role.getKey();
     }
 
 }

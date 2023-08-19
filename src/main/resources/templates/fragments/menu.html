@@ -9,9 +9,26 @@
                 <div class="col-md-12">
                     <div class="navbar-collapse collapse ">
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
-                            <li><a th:href="@{/question/list}" >Q&A 게시판 </a></li>
-                            <li><a th:href="@{/user/list}">사용자 관리</a></li>
-                           <!--
+                            <li><a th:href="@{/question/list}" >Q&A Board </a></li>
+                            <li th:if="${#authentication.getPrincipal().getRoleKey() == 'ROLE_ADMIN'}">
+                                <a th:href="@{/user/list}">사용자 관리</a>
+                            </li>
+                            <li>
+                                <a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown">My Page <i class="fa fa-angle-down"></i></a>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
+                                    <li role="presentation">
+                                        <a role="menuitem" tabindex="-1" th:href="@{|/user/profile/${#authentication.getPrincipal().getUsername()}|}">
+                                            나의가입정보
+                                        </a>
+                                    </li>
+                                     <li role="presentation">
+                                        <a role="menuitem" tabindex="-1" th:href="@{|/user/password/${#authentication.getPrincipal().getUsername()}|}">
+                                            비밀번호변경
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!--
                             <li><a th:href="@{/sample/form}">FORMS</a></li>
                             <li>
                                 <a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown">UI ELEMENTS <i class="fa fa-angle-down"></i></a>

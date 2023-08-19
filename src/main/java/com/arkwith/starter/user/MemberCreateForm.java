@@ -23,11 +23,20 @@ public class MemberCreateForm {
     @Size(min=3, max=25)
     @NotEmpty(message = "사용자 닉네임은 필수 입력 값입니다.")
     private String nickname;
+
+    private String picture;
+    private String name;
     
     @NotEmpty(message = "이메일은 필수 입력 값입니다.")
     @Email(message = "이메일 형식이 올바르지 않습니다.")
     private String email;
 
+    private String provider;
+    private String providerId;
+
+    private Role role;
+
+    private String mode;
 
     
 }

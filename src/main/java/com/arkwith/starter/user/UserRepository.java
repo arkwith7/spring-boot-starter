@@ -18,6 +18,7 @@ public interface UserRepository extends JpaRepository<Member, Long>{
             + "where "
             + "   m.username like %:kw% "
             + "   or m.nickname like %:kw% "
+            + "   or m.email like %:kw% "
             + "   or m.name like %:kw% ")
     Page<Member> findAllByKeyword(@Param("kw") String kw, Pageable pageable);
     
