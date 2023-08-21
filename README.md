@@ -12,7 +12,17 @@
 - 개발도구(IDE) : VScode v1.81.1
 
 - **참조**
+>>1. [Spring | Home](https://spring.io/)
+>>1. [Thymeleaf](https://www.thymeleaf.org/)
 >>1. [Bootstrap 3 Tutorial](https://www.w3schools.com/bootstrap/default.asp)
+
+### Install
+- JDK 설치 : 운영체제 별로 OpenJDK17을 다운받아 설치
+- 터미널 또는 VScode에서 Github Repository Clone
+> ``` 
+>  git clone https://github.com/arkwith7/spring-boot-starter.git
+> ```
+
 
 ### 소셜 로그인, 자체로그인 통합
 - 회원관리(도메인객체: src/main/java/com/arkwith/starter/user/Member.java)
