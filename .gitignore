@@ -37,7 +37,7 @@ out/
 .vscode/
 
 
-application-oauth.properties
+# application-oauth.properties
 
 ### 사용자정의
 images/
