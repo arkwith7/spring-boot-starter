@@ -3,7 +3,6 @@ package com.arkwith.starter;
 import java.time.LocalDateTime;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
-import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
