@@ -23,27 +23,37 @@
 ### 주요기능
 > **Landing Page**
 >![](images/landingPage.png)
+>
 > **회원가입**
+>![](images/signup.png)
 >
 > **Member Table 일반 Login**
->
 > **Google, Naver OAuth2 소셜 Login**
+>![](images/login.png)
 >
 > **Admin Page**
+>![](images/adminPage.png)
 >
 > **사용자 프로파일**
 >
+>
 > **Q&A BOARD 목록조회, 질문하기, 질문수정/삭제**
+>
 >
 > **Q&A BOARD 검색**
 >
+>
 > **Q&A BOARD Pagination**
+>
 >
 > **Q&A BOARD 질문별 답변조회, 딥변하기, 답변수정/삭제**
 >
+>
 > **MY PAGE - 니의가입정보**
 >
+>
 > **MY PAGE - 비밀번호변경**
+>
 >
 > **Admin계정 로그인시**
 >> - 사용자관리 목록조회, Pagination, 사용자검색 및 등록/수정삭제 
