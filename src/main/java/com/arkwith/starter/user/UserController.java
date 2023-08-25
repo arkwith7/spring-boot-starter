@@ -17,11 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.arkwith.starter.question.QuestionForm;
-
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RequiredArgsConstructor
 @Controller
 @RequestMapping("/user")
@@ -53,6 +53,8 @@ public class UserController {
             memberService.create(memberCreateForm.getUsername(), memberCreateForm.getPassword1(),
                                  memberCreateForm.getNickname(), null, null, Role.USER,
                                  memberCreateForm.getEmail());
+            log.info("회원가입 Username: {}, 사용자명: {}, 닉네임: {}, 이메일:{} ", 
+            memberCreateForm.getUsername(), memberCreateForm.getName(), memberCreateForm.getNickname(), memberCreateForm.getEmail());                    
         } catch (DataIntegrityViolationException e) {
             e.printStackTrace();
             bindingResult.reject("signupFailed", "이미 등록된 사용자입니다.");

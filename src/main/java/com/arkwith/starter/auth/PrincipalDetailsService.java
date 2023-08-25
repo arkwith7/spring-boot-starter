@@ -1,4 +1,6 @@
 package com.arkwith.starter.auth;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -15,7 +17,8 @@ import com.arkwith.starter.user.Role;
 import com.arkwith.starter.user.UserRepository;
 
 import lombok.RequiredArgsConstructor;
-
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class PrincipalDetailsService implements UserDetailsService {
@@ -38,6 +41,10 @@ public class PrincipalDetailsService implements UserDetailsService {
         } else {
             authorities.add(new SimpleGrantedAuthority(Role.USER.getKey()));
         }
+
+        log.info("사용자ID가 {}인 사용자가 {}에 로그인 요청을 합니다.", 
+                         member.getUsername(), 
+                         LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) );
 
         return new PrincipalDetails(member);
         

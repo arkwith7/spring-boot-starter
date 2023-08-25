@@ -1,5 +1,7 @@
 package com.arkwith.starter.auth;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -65,6 +67,10 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
                                    );
             userRepository.save(member);
         }
+
+        log.info("사용자ID가 {}인 사용자가 {}에 로그인 요청을 합니다.", 
+                         member.getUsername(), 
+                         LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) );
 
         return new PrincipalDetails(member, oAuth2User.getAttributes());
     }

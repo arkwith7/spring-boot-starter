@@ -20,9 +20,10 @@ import com.arkwith.starter.user.Member;
 import com.arkwith.starter.user.UserService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import jakarta.validation.Valid;
 
-
+@Slf4j
 @RequestMapping("/question")
 @RequiredArgsConstructor
 @Controller
@@ -36,6 +37,7 @@ public class QuestionController {
     public String list(Model model, @RequestParam(value="page", defaultValue = "0") int page,
             @RequestParam(value="numPerPage", defaultValue = "10") int numPerPage,
             @RequestParam(value="kw", defaultValue = "") String kw) {
+        log.info("page: {}, numPerPage: {}, kw: {}", page, numPerPage, kw);
         // List<Question> questions = this.questionService.findAll();
         Page<Question> paging = this.questionService.getList(page, numPerPage, kw);
         model.addAttribute("paging", paging);

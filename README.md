@@ -22,7 +22,7 @@
 
 ### 주요기능
 > **Landing Page**
->
+>![](images/landingPage.png)
 > **회원가입**
 >
 > **Member Table 일반 Login**
