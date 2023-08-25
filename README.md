@@ -24,16 +24,20 @@
 > **Landing Page**
 >![](images/landingPage.png)
 >
+
 > **회원가입**
 >![](images/signup.png)
 >
-> **Member Table 일반 Login**
+
+> **Member Table 일반 Login,**
 > **Google, Naver OAuth2 소셜 Login**
 >![](images/login.png)
 >
+
 > **Admin Page**
 >![](images/adminPage.png)
 >
+
 > **사용자 프로파일**
 >
 >
