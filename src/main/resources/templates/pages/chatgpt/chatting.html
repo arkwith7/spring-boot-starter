@@ -12,82 +12,398 @@
         <link rel="stylesheet" th:href="@{/assets/css/style.css}">
         <!-- GOOGLE FONT -->
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-                <!-- Highlight js for syntax highlight -->
+        <!-- Highlight js for syntax highlight -->
         <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.7.0/styles/default.min.css" />
-	    <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.7.0/styles/github-dark.min.css"/>
-	    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.7.0/highlight.min.js"></script>
-	    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.7.0/languages/javascript.min.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.7.0/styles/github-dark.min.css" />
+        <script src="https://unpkg.com/@highlightjs/cdn-assets@11.7.0/highlight.min.js"></script>
+        <script src="https://unpkg.com/@highlightjs/cdn-assets@11.7.0/languages/javascript.min.js"></script>
+        <style type="text/css">
+            #custom-search-input {
+                background: #e8e6e7 none repeat scroll 0 0;
+                margin: 0;
+                padding: 10px;
+            }
+
+            #custom-search-input .search-query {
+                background: #fff none repeat scroll 0 0 !important;
+                border-radius: 4px;
+                height: 33px;
+                margin-bottom: 0;
+                padding-left: 7px;
+                padding-right: 7px;
+            }
+
+            #custom-search-input button {
+                background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+                border: 0 none;
+                border-radius: 3px;
+                color: #666666;
+                left: auto;
+                margin-bottom: 0;
+                margin-top: 7px;
+                padding: 2px 5px;
+                position: absolute;
+                right: 0;
+                z-index: 9999;
+            }
+
+            .search-query:focus+button {
+                z-index: 3;
+            }
+
+            .all_conversation button {
+                background: #f5f3f3 none repeat scroll 0 0;
+                border: 1px solid #dddddd;
+                height: 38px;
+                text-align: left;
+                width: 100%;
+            }
+
+            .all_conversation i {
+                background: #e9e7e8 none repeat scroll 0 0;
+                border-radius: 100px;
+                color: #636363;
+                font-size: 17px;
+                height: 30px;
+                line-height: 30px;
+                text-align: center;
+                width: 30px;
+            }
+
+            .all_conversation .caret {
+                bottom: 0;
+                margin: auto;
+                position: absolute;
+                right: 15px;
+                top: 0;
+            }
+
+            .all_conversation .dropdown-menu {
+                background: #f5f3f3 none repeat scroll 0 0;
+                border-radius: 0;
+                margin-top: 0;
+                padding: 0;
+                width: 100%;
+            }
+
+            .all_conversation ul li {
+                border-bottom: 1px solid #dddddd;
+                line-height: normal;
+                width: 100%;
+            }
+
+            .all_conversation ul li a:hover {
+                background: #dddddd none repeat scroll 0 0;
+                color: #333;
+            }
+
+            .all_conversation ul li a {
+                color: #333;
+                line-height: 30px;
+                padding: 3px 20px;
+            }
+
+            .member_list .chat-body {
+                margin-left: 47px;
+                margin-top: 0;
+            }
+
+            .top_nav {
+                overflow: visible;
+            }
+
+            .member_list .contact_sec {
+                margin-top: 3px;
+            }
+
+            .member_list li {
+                padding: 6px;
+            }
+
+            .member_list ul {
+                border: 1px solid #dddddd;
+            }
+
+            .chat-img img {
+                height: 34px;
+                width: 34px;
+            }
+
+            .member_list li {
+                border-bottom: 1px solid #dddddd;
+                padding: 6px;
+            }
+
+            .member_list li:last-child {
+                border-bottom: none;
+            }
+
+            .member_list {
+                height: 380px;
+                overflow-x: hidden;
+                overflow-y: auto;
+            }
+
+            .sub_menu_ {
+                background: #e8e6e7 none repeat scroll 0 0;
+                left: 100%;
+                max-width: 233px;
+                position: absolute;
+                width: 100%;
+            }
+
+            .sub_menu_ {
+                background: #f5f3f3 none repeat scroll 0 0;
+                border: 1px solid rgba(0, 0, 0, 0.15);
+                display: none;
+                left: 100%;
+                margin-left: 0;
+                max-width: 233px;
+                position: absolute;
+                top: 0;
+                width: 100%;
+            }
+
+            .all_conversation ul li:hover .sub_menu_ {
+                display: block;
+            }
+
+            .new_message_head button {
+                background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+                border: medium none;
+            }
+
+            .new_message_head {
+                background: #f5f3f3 none repeat scroll 0 0;
+                float: left;
+                font-size: 13px;
+                font-weight: 600;
+                padding: 18px 10px;
+                width: 100%;
+            }
+
+            .message_section {
+                border: 1px solid #dddddd;
+            }
+
+            .chat_area {
+                float: left;
+                height: 460px;
+                overflow-x: hidden;
+                overflow-y: auto;
+                width: 100%;
+            }
+
+            .chat_area li {
+                padding: 14px 14px 0;
+            }
+
+            .chat_area li .chat-img1 img {
+                height: 40px;
+                width: 40px;
+            }
+
+            .chat_area .chat-body1 {
+                margin-left: 50px;
+            }
+
+            .chat-body1 p {
+                background: #fbf9fa none repeat scroll 0 0;
+                padding: 10px;
+            }
+
+            .chat_area .admin_chat .chat-body1 {
+                margin-left: 0;
+                margin-right: 50px;
+            }
+
+            .chat_area li:last-child {
+                padding-bottom: 10px;
+            }
+
+            .message_write {
+                background: #f5f3f3 none repeat scroll 0 0;
+                float: left;
+                padding: 15px;
+                width: 100%;
+            }
+
+            .message_write textarea.form-control {
+                height: 70px;
+                padding: 10px;
+            }
+
+            .chat_bottom {
+                float: left;
+                margin-top: 13px;
+                width: 100%;
+            }
+
+            .upload_btn {
+                color: #777777;
+            }
+
+            .sub_menu_>li a,
+            .sub_menu_>li {
+                float: left;
+                width: 100%;
+            }
+
+            .member_list li:hover {
+                background: #428bca none repeat scroll 0 0;
+                color: #fff;
+                cursor: pointer;
+            }
+        </style>
     </th:block>
 
 </head>
 <!-- Content -->
 <div layout:fragment="content">
-    <h4 class="mb-4" th:text="#{app.title}"></h4>
-    <p th:utext="#{app.description}" class="mb-5"></p>
-    <div class="col-md-8 mb-5">
-        <div id="chat-response"></div>
-        <h5 class="mb-3">Ask a Question</h5>
-        <div class="container p-4 bg-light shadow">
-            <div class="list-group">
-                <div class="input-group input-group-lg">
-                    <input class="form-control border-end-0 border input-sm" type="search" placeholder="Send a message" id="input-message">
-                    <span class="input-group-append">
-                        <button class="btn btn-lg btn-outline-secondary bg-white border-start-0 border ms-n5" id="chat-btn" type="button">
-                            <i class="bi bi-play-fill text-primary"></i>
-                        </button>
-                    </span>
+    <div class="content-wrapper">
+        <div class="container">
+            <!-- <div class="row pad-botm">
+                <div class="col-md-12">
+                    <h4 class="header-line" th:text="#{app.title}"></h4>
+                </div>
+
+            </div> -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="new_message_head">
+                            <div class="pull-left" th:utext="#{app.title}"><button><i class="fa fa-plus-square-o" aria-hidden="true"></i> New
+                                    Message</button></div>
+                            <!-- <div class="pull-right">
+                                <div class="dropdown">
+                                    <button class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                               <i class="fa fa-cogs" aria-hidden="true"></i>  Setting
+                               <span class="caret"></span>
+                             </button>
+                             <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+                               <li><a href="#">Action</a></li>
+                               <li><a href="#">Profile</a></li>
+                               <li><a href="#">Logout</a></li>
+                             </ul>
+                                </div>
+                            </div> -->
+                        </div><!--new_message_head-->
+
+                        <div class="chat_area">
+                            <ul class="list-unstyled" id="chat-response">
+
+
+
+
+                            </ul>
+                        </div><!--chat_area-->
+                        <div class="message_write">
+                            <textarea id="input-message" class="form-control" placeholder="type a message"></textarea>
+                            <div class="clearfix"></div>
+                            <div class="chat_bottom">
+                                <button id="chat-btn" type="button" class="pull-right btn btn-success">Send</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="card  mb-4 shadow-sm bg-light">
+                        <div class="card-header">
+                            <h6>Chat-GPT-3.5</h6>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text" th:utext="#{app.description}"></p>
+
+                            <div id="chat-response"></div>
+                            <h5 class="mb-3">Ask a Question</h5>
+
+                            <div class="list-group">
+                                <div class="input-group">
+                                    <input class="form-control" type="text" placeholder="Send a message"
+                                        id="input-message">
+                                    <span class="form-group input-group-btn">
+                                        <button class="btn btn-default" id="chat-btn" type="button">Go!</button>
+                                    </span>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div> -->
+
                 </div>
             </div>
         </div>
     </div>
-</div>
-<script layout:fragment="script" type='text/javascript'>
-$(document).ready(function(){
-	
-    $("#chat-btn").click(function(){
-      $("#chat-response").append(spinner());
-      var chatMsg = $("#input-message").val();
-      $.ajax({url: "/openai/chat/"+chatMsg, success: function(result){
-         $(".spinner-block").remove();
-         $("#chat-response").append(chatResponse(result.prompt, result.htmlResponse));
-         hljs.highlightAll();
-         $("#input-message").val('');
-      }});
-    });
-    
-    
-    function chatResponse(prompt, response) {
-      
-        return `<div class="card  mb-4 shadow-sm bg-light">
-                    <div class="card-header">
-                      <h6>${prompt}</h6>
-                    </div>
-                    <div class="card-body">
-                      <p class="card-text">${response}</p>			
-                    </div>
-                    <div class="card-footer"><button class="btn btn-secodary float-md-end" onClick="window.location.reload();">Reset Chat</button></div>
-                  </div>`;
-        }
-  });
-  
-  function spinner(){
-      return `<div class="d-flex justify-content-center spinner-block">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+
+    <script layout:fragment="script" type='text/javascript'>
+        $(document).ready(function () {
+
+            $("#chat-btn").click(function () {
+                // alert("chat-btn");
+                $("#chat-response").append(spinner());
+                var chatMsg = $("#input-message").val();
+                $.ajax({
+                    url: "/openai/chat/" + chatMsg, success: function (result) {
+                        $(".spinner-block").remove();
+                        $("#chat-response").append(chatResponse(result.prompt, result.htmlResponse));
+                        hljs.highlightAll();
+                        $("#input-message").val('');
+                    }
+                });
+            });
+
+
+            function chatResponse(prompt, response) {
+
+                // return `<div class="card  mb-4 shadow-sm bg-light">
+                //     <div class="card-header">
+                //       <h6>${prompt}</h6>
+                //     </div>
+                //     <div class="card-body">
+                //       <p class="card-text">${response}</p>			
+                //     </div>
+                //     <div class="card-footer"><button class="btn btn-secodary float-md-end" onClick="window.location.reload();">Reset Chat</button></div>
+                //   </div>`;
+                return `    <li class="left clearfix">
+                                    <span class="chat-img1 pull-left">
+                                        <img src="/assets/img/question_icon.png"
+                                            alt="User Avatar" class="img-circle">
+                                    </span>
+                                    <div class="chat-body1 clearfix">
+                                        <p>${prompt}</p>
+                                    </div>
+                    </li>
+                    <li class="left clearfix">
+                                    <span class="chat-img1 pull-left">
+                                        <img src="/assets/img/ChatGPT_logo.svg.png"
+                                            alt="User Avatar" class="img-circle">
+                                    </span>
+                                    <div class="chat-body1 clearfix">
+                                        <p>${response}</p>			
+                                    </div>
+                    </li>`;
+            }
+        });
+
+        function spinner() {
+            return `<div class="d-flex justify-content-center spinner-block">
                 <div class="spinner-border" role="status">
                   <span class="visually-hidden">Loading...</span>
                 </div>
               </div>`;
-  }
-  
-  document.querySelectorAll('.fom-submit-confirm').forEach(($item) => {
-      $item.addEventListener('submit', (event) => {
-          if (!confirm(event.currentTarget.getAttribute('data-msg-confirm'))) {
-              event.preventDefault();
-              return false;
-          }
-          return true;
-      });
-  });
-  
-  </script>
+        }
+
+        document.querySelectorAll('.fom-submit-confirm').forEach(($item) => {
+            $item.addEventListener('submit', (event) => {
+                if (!confirm(event.currentTarget.getAttribute('data-msg-confirm'))) {
+                    event.preventDefault();
+                    return false;
+                }
+                return true;
+            });
+        });
+
+    </script>
 
 </html>
