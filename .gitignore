@@ -38,6 +38,7 @@ out/
 
 
 application-oauth.properties
+application-prod.properties
 
 ### 사용자정의
 # images/
