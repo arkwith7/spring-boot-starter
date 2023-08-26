@@ -9,6 +9,7 @@
                 <div class="col-md-12">
                     <div class="navbar-collapse collapse ">
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
+                            <li><a th:href="@{/chatgpt/chat}" >OpenAI Chat-GPT </a></li>
                             <li><a th:href="@{/question/list}" >Q&A Board </a></li>
                             <li th:if="${#authentication.getPrincipal().getRoleKey() == 'ROLE_ADMIN'}">
                                 <a th:href="@{/user/list}">사용자 관리</a>

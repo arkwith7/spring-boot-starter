@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/admin-layout}">
+
+<head>
+    <title>OpenAI Chat-GPT-3.5</title>
+
+    <!-- index.html 고유 CSS 추가 -->
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" th:href="@{/assets/css/bootstrap.css}">
+        <link rel="stylesheet" th:href="@{/assets/css/font-awesome.css}">
+        <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+        <!-- GOOGLE FONT -->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+                <!-- Highlight js for syntax highlight -->
+        <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.7.0/styles/default.min.css" />
+	    <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.7.0/styles/github-dark.min.css"/>
+	    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.7.0/highlight.min.js"></script>
+	    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.7.0/languages/javascript.min.js"></script>
+    </th:block>
+
+</head>
+<!-- Content -->
+<div layout:fragment="content">
+    <h4 class="mb-4" th:text="#{app.title}"></h4>
+    <p th:utext="#{app.description}" class="mb-5"></p>
+    <div class="col-md-8 mb-5">
+        <div id="chat-response"></div>
+        <h5 class="mb-3">Ask a Question</h5>
+        <div class="container p-4 bg-light shadow">
+            <div class="list-group">
+                <div class="input-group input-group-lg">
+                    <input class="form-control border-end-0 border input-sm" type="search" placeholder="Send a message" id="input-message">
+                    <span class="input-group-append">
+                        <button class="btn btn-lg btn-outline-secondary bg-white border-start-0 border ms-n5" id="chat-btn" type="button">
+                            <i class="bi bi-play-fill text-primary"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script layout:fragment="script" type='text/javascript'>
+$(document).ready(function(){
+	
+    $("#chat-btn").click(function(){
+      $("#chat-response").append(spinner());
+      var chatMsg = $("#input-message").val();
+      $.ajax({url: "/openai/chat/"+chatMsg, success: function(result){
+         $(".spinner-block").remove();
+         $("#chat-response").append(chatResponse(result.prompt, result.htmlResponse));
+         hljs.highlightAll();
+         $("#input-message").val('');
+      }});
+    });
+    
+    
+    function chatResponse(prompt, response) {
+      
+        return `<div class="card  mb-4 shadow-sm bg-light">
+                    <div class="card-header">
+                      <h6>${prompt}</h6>
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text">${response}</p>			
+                    </div>
+                    <div class="card-footer"><button class="btn btn-secodary float-md-end" onClick="window.location.reload();">Reset Chat</button></div>
+                  </div>`;
+        }
+  });
+  
+  function spinner(){
+      return `<div class="d-flex justify-content-center spinner-block">
+                <div class="spinner-border" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </div>`;
+  }
+  
+  document.querySelectorAll('.fom-submit-confirm').forEach(($item) => {
+      $item.addEventListener('submit', (event) => {
+          if (!confirm(event.currentTarget.getAttribute('data-msg-confirm'))) {
+              event.preventDefault();
+              return false;
+          }
+          return true;
+      });
+  });
+  
+  </script>
+
+</html>
