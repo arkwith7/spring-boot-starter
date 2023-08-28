@@ -43,8 +43,9 @@
 >
 
 > **Q&A BOARD 목록조회, 질문하기, 질문수정/삭제**
+>![](images/question_list.png)
 >
->
+
 > **Q&A BOARD 검색**
 >
 >
@@ -54,7 +55,11 @@
 > **Q&A BOARD 질문별 답변조회, 딥변하기, 답변수정/삭제**
 >
 >
-> **MY PAGE - 니의가입정보**
+> **OpenAI Chat-GPT - AI채팅체험**
+>![](images/openai_chatgpt.png)
+>
+
+> **MY PAGE - 나의가입정보**
 >
 >
 > **MY PAGE - 비밀번호변경**

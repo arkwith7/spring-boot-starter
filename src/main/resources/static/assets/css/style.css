@@ -301,14 +301,14 @@ height: 60px;
     }
     .naver-icon {
       position: absolute;
-      margin-top: 11px;
-      margin-left: 11px;
-      width: 18px;
-      height: 18px;
+      margin-top: 5px;
+      margin-left: 6px;
+      width: 30px;
+      height: 30px;
     }
     .btn-text {
       float: right;
-      margin: 7px 37px 4px 67px;
+      margin: 5px 38px 7px 8px;
       color: var(--white);
       font-size: 14px;
       letter-spacing: 0.2px;
